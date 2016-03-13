@@ -47,11 +47,15 @@ function update() {
 		deathText.text = "Exceeded maximum capacity!";
 		deathText.visible = true;
 		game.paused = true;
-		// if (restartTime == 0) {
-		// 	startRestartTimer();
-		// }
+		overlayTime = game.time.now + 1000;
 	}
-	// if (isDead && (game.time.now >= restartTime)) {
-	// 	// refreshLevel();
-	// }
+	// if character is dead, show overlay after a while
+	else if(isDead && (game.time.now >= overlayTime)){
+		showHide("death");
+		// chooseFace(true,6,6);
+		// deathText.text = "Exceeded maximum capacity!";
+		// deathText.visible = true;
+		// game.paused = true;
+	}
+
 }

@@ -4,7 +4,7 @@ body {
 }
 canvas {
   position:absolute;
-  z-index: 0;
+  z-index: -1;
 }
 
 .overlay {
@@ -66,3 +66,9 @@ h2 {
   font-size: 0.8em;
 }
 
+#reload {
+  position:absolute;
+  z-index: 0;
+  right:0;
+  margin:2em;
+}

@@ -3,14 +3,45 @@
 // references to Phaser essential functions
 var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-var overlay = document.getElementById("intro");
-var dismissButton = overlay.getElementsByTagName('button');
-dismissButton[0].onclick = hideOverlay;
+// showHide('intro');
+// dismissButton[0].onclick = showHide('intro');
 
-function hideOverlay() {
-	overlay.remove('#intro');
+// function hideOverlay() {
+// 	overlay.remove('#intro');
+// 	game.paused = false;
+// };
+
+function setUpClicks() {
+	var overlay = document.getElementById("intro");
+	overlay.style.display = "block";
+	overlay = document.getElementById("death");
+	overlay.style.display = "none";
+	overlay = document.getElementById("win");
+	overlay.style.display = "none";
+
+	var buttons = document.getElementsByTagName('button');
+	for (var i = 0; i < buttons.length-1; i++) {
+		if (buttons[i].id == "reload") {
+			buttons[i].addEventListener('click', function() {
+				reloadLevel("reload");
+			});
+		} else {
+			buttons[i].addEventListener('click', function() {
+				showHide(this.parentElement.parentElement.id);
+			});
+		}
+	}
 	game.paused = false;
 };
+
+function showHide(id) {
+	var el = document.getElementById(id);
+	if (el.style.display == "block") {
+		document.getElementById(id).style.display = 'none';
+	} else {
+		document.getElementById(id).style.display = 'block';
+	}
+}
 
 // load assets: define the asset key,
 function preload() {
@@ -26,6 +57,8 @@ function preload() {
 	game.load.image('toilet', 'assets/toilet.png');
 	game.load.image('poop', 'assets/poo.png');
 	game.load.spritesheet('face', 'assets/faces-sprites.png', 36, 46);
+	setUpClicks();
+
 }
 
 var platforms;
@@ -47,26 +80,31 @@ var totMunchiesEaten = 0;
 var allowInput = true;
 var isDead = false;
 var deathTime = 0;
+var overlayTime = 0;
+var restartTime = 0;
 var introText;
 var dimension;
 var noOfPlatforms;
 var randomX;
 var randomY;
-var restartTime = 0;
+var poops;
 
-// function startRestartTimer() {
-// 	restartTime = game.time.now + 5000000;
-// }
-//
-// function refreshLevel() {
-// 	platforms.destroy();
-// 	munchies.destroy();
-// 	toilet.destroy();
-// 	player.destroy();
-// 	deathText.visible = false;
-// 	createSurfaces();
-// 	createWC();
-// 	createPlayer();
-// 	createMunchies();
-// 	isDead = false;
-// }
+function refreshLevel(status) {
+	platforms.destroy();
+	munchies.destroy();
+	toilet.destroy();
+	player.destroy();
+	// poo.destroy();
+	scoreText.text = "Score: " + 0;
+	if (status = "win") {
+		game.paused = true;
+	} if (status = "reload") {
+		game.paused = false;
+	} if (status = "death") {
+		game.paused = true;
+	}
+	createSurfaces();
+	createWC();
+	createPlayer();
+	createMunchies();
+}

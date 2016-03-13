@@ -36,6 +36,6 @@ function addMunchies(munchyName) {
 
     munchiesCreated++;
 	}
-  munchiesLimit = Math.round(munchiesCreated/3);
+  maxCapacity = Math.round(munchiesCreated/3);
 
 }

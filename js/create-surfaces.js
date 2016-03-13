@@ -21,17 +21,17 @@ function createSurfaces() {
 
   if (level == 0) {
     // x then y from bottom to top
-    createPlatforms(0, 450);
+    // createPlatforms(0, 450);
     for (var i=0; i<noOfPlatforms; i++) {
         if (randomX != 0) {
-          randomX = Math.round((Math.random(0, (game.world.width-300)/10000))*500);
-        } else {
-          randomX = 300+Math.round((Math.random(0, (game.world.width-300)/1000))*500);
+          randomX = 100+Math.round((Math.random(0, (game.world.width)/10000))*500);
+        // } else {
+        //   randomX = 1000+Math.round((Math.random(0, (game.world.width)/1000))*500);
         }
         if (randomY != 0) {
-          randomY = Math.round((Math.random(0, (game.world.height-300)/10000))*500);
-        } else {
-          randomY = 300+Math.round((Math.random(0, (game.world.width-300)/1000))*500);
+          randomY = 100+Math.round((Math.random(0, (game.world.height)/10000))*500);
+        // } else {
+        //   randomY = 300+Math.round((Math.random(0, (game.world.width-300)/1000))*500);
         }
         createPlatforms(randomX, randomY);
     }
@@ -58,3 +58,8 @@ function createPlatforms(dim1, dim2) {
 	ledge.body.immovable = true;
 }
 
+function reloadLevel() {
+  score -= 10;
+  platforms.destroy();
+  createSurfaces();
+}

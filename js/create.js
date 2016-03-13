@@ -40,7 +40,6 @@ function create() {
 	// introText.anchor.setTo(0.5, 0.5);
 	deathText.anchor.setTo(0.5, 0.5);
 	winnerText.anchor.setTo(0.5, 0.5);
-	// game.input.onDown.add(refreshLevel, this);
 
 
 }

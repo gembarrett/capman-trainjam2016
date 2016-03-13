@@ -3,9 +3,6 @@ function createWC() {
     randomLooX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
 
     createToilet(randomLooX);
-    // if (game.world.width > 500) {
-    //   createPlatforms(70, 250);
-    // }
   }
 }
 
