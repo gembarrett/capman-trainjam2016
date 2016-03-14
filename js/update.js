@@ -47,7 +47,7 @@ function update() {
 		deathText.text = "Exceeded maximum capacity!";
 		deathText.visible = true;
 		game.paused = true;
-		overlayTime = game.time.now + 1000;
+		overlayTime = game.time.now + 5000;
 	}
 	// if character is dead, show overlay after a while
 	else if(isDead && (game.time.now >= overlayTime)){

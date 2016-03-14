@@ -12,6 +12,7 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '
 // };
 
 function setUpClicks() {
+	console.log('setting up clicks');
 	var overlay = document.getElementById("intro");
 	overlay.style.display = "block";
 	overlay = document.getElementById("death");
@@ -27,11 +28,12 @@ function setUpClicks() {
 			});
 		} else {
 			buttons[i].addEventListener('click', function() {
+				console.log("button click to dismiss");
+				game.paused = false;
 				showHide(this.parentElement.parentElement.id);
 			});
 		}
 	}
-	game.paused = false;
 };
 
 function showHide(id) {
@@ -90,19 +92,13 @@ var randomY;
 var poops;
 
 function refreshLevel(status) {
+	console.log("refreshLevel" + status);
 	platforms.destroy();
 	munchies.destroy();
 	toilet.destroy();
 	player.destroy();
 	// poo.destroy();
 	scoreText.text = "Score: " + 0;
-	if (status = "win") {
-		game.paused = true;
-	} if (status = "reload") {
-		game.paused = false;
-	} if (status = "death") {
-		game.paused = true;
-	}
 	createSurfaces();
 	createWC();
 	createPlayer();

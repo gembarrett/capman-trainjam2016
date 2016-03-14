@@ -1,11 +1,15 @@
 function useToilet(toilet) {
-	stateCheck();
+	// check if needtopoop is true
 	if (needToPoop) {
+		// create poop
 		createPoop(toilet.body.x,toilet.body.y);
+		// increase score by 10
 		score +=10;
+		// reset number of munchies eaten
 		munchiesEaten = 0;
+		// reset faceto default
 		chooseFace(false, 3,2);
-		reloadLevel();
+		// reloadLevel();
 	}
 }
 

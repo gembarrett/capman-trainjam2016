@@ -59,7 +59,8 @@ function createPlatforms(dim1, dim2) {
 }
 
 function reloadLevel() {
-  score -= 10;
+  score-= 20;
+  scoreText.text = 'Score: ' +score;
   platforms.destroy();
   createSurfaces();
 }

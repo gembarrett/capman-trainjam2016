@@ -7,48 +7,30 @@ function eatMunchy(player, munchy) {
 	// update score
 	score += 10;
 	scoreText.text = 'Score: ' + score;
+	console.log("stateCheck because munchy eaten");
 	stateCheck();
 }
 
-
-function explodyFace() {
-	chooseFace(true, 5,5);
-}
-
-function deadFace() {
-	chooseFace(true, 6,6);
-	allowInput = false;
-}
 
 function poopyOrNo() {
 	if (munchiesEaten < maxCapacity+1) {
 	  chooseFace(false,3,2);
 	// reached maximum capacity
 } else if (munchiesEaten >= maxCapacity+1) {
-		stateCheck();
+		chooseFace(true,0,1);
 	}
 }
 
 function stateCheck() {
 	// if winner
 	if (totMunchiesEaten == munchiesCreated) {
+		console.log('is winner')
+		// change face to winner
 	  chooseFace(false,4,4);
-		showHide('win');
-		refreshLevel('win');
-		// winnerText.text = "Next level";
-		// if (nextLevelTime == 0) {
-		// 	startRestartTimer();
-		// } else {
-		// 	restartTime = 0;
-		// 	startRestartTimer();
-		// }
 	}
 	// if at maximum capacity (with a little lee-way)
-	else if (munchiesEaten == maxCapacity+1) {
-		chooseFace(true,0,1);
-	}
-	// if dead
 	else if (munchiesEaten > maxCapacity+1) {
+		console.log('is dead');
 		isDead = true;
 		if (deathTime == 0) {
 			startDeathTimer();
@@ -58,6 +40,15 @@ function stateCheck() {
 
 function startDeathTimer() {
 	deathTime = game.time.now + 1000;
-	chooseFace(true, 5,5);
+	chooseFace(true,5,5);
 	refreshLevel("dead");
+}
+
+function startWinnerTimer() {
+	winTime = game.time.now + 1000;
+	chooseFace(true,4,4);
+	// show the winning overlay
+	showHide('win');
+	// refresh the level
+	refreshLevel('win');
 }
