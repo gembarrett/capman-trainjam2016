@@ -23,7 +23,7 @@ function create() {
 		fontSize:'20px', fill: '#000'
 	});
 
-	levelText = game.add.text(game.world.centerX,0, 'Level: 1', {
+	levelText = game.add.text(game.world.centerX,16, 'Level: '+level, {
 		fontSize:'20px', fill: '#000'
 	});
 
@@ -44,7 +44,7 @@ function create() {
 	// introText.anchor.setTo(0.5, 0.5);
 	// deathText.anchor.setTo(0.5, 0.5);
 	// winnerText.anchor.setTo(0.5, 0.5);
-	levelText.anchor.setTo(1, 0.5);
+	// levelText.anchor.setTo(1, 0.5);
 
 
 }

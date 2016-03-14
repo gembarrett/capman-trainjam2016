@@ -107,6 +107,7 @@ function refreshLevel(status) {
 	// reset all the things
 	game.input.enabled = true;
 	scoreText.text = "Score: " + 0;
+	levelText.text = "Level: " + level;
 	needToPoop = false;
 	munchiesEaten = 0;
 	munchiesCreated = 0;

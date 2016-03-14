@@ -42,7 +42,7 @@ function createWC() {
 }
 
 function randomiseLoos() {
-  var randomNo = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+  var randomNo = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
   for (var i=0; i<randomNo; i++) {
     createToilet();
   }
