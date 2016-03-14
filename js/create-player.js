@@ -20,7 +20,6 @@ function createPlayer() {
 function chooseFace(poopNeed, headOn, side) {
   player.animations.stop();
   needToPoop = poopNeed;
-  // TODO deal with memory leak here
   player.frame = headOn;
 
   player.animations.add('left', [side], 10, true);

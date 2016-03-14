@@ -11,7 +11,6 @@ function update() {
 	// reset horizontal velocity on sprite
 	// player.body.velocity.x = 0;
 
-	if (allowInput) {
 		// if left cursor is down
 		if (cursors.left.isDown) {
 			// it's a jump to the left
@@ -31,7 +30,6 @@ function update() {
 			player.body.velocity.y = -200;
 		}
 
-	}
 
 	// check for collisions between the munchies and ledges
 	// stop munchies falling through the world
@@ -42,20 +40,36 @@ function update() {
 	game.physics.arcade.collide(toilet, platforms);
 	game.physics.arcade.overlap(player, toilet, useToilet, null, this);
 
-	if(isDead && (game.time.now >= deathTime)){
+	// if dead and time for face to change
+	if(isDead && ((game.time.now >= deathTime) && (game.time.now <= deathTime+100))){
+		console.log('deathTime');
 		chooseFace(true,6,6);
-		deathText.text = "Exceeded maximum capacity!";
-		deathText.visible = true;
-		game.paused = true;
-		overlayTime = game.time.now + 5000;
-	}
-	// if character is dead, show overlay after a while
-	else if(isDead && (game.time.now >= overlayTime)){
-		showHide("death");
-		// chooseFace(true,6,6);
 		// deathText.text = "Exceeded maximum capacity!";
 		// deathText.visible = true;
 		// game.paused = true;
+		// if character is dead, show overlay after a while
+		// if overlay delay time isn't set yet
+		if (overlayTime == 0) {
+			// set it
+			overlayTime = game.time.now + 10;
+		}
+		// if time for death overlay to show
+		else if((game.time.now >= overlayTime && game.time.now <= overlayTime+100)){
+			console.log('overlayTime');
+			showHide("death");
+			refreshLevel('death');
+		}
+	}
+	// else
+		// deathText.text = "Exceeded maximum capacity!";
+		// deathText.visible = true;
+		// game.paused = true;
+	else if(isDead && (game.time.now >= winTime && game.time.now <= winTime+100)) {
+		console.log('winTime');
+		// show the winning overlay
+		showHide('win');
+		// refresh the level
+		refreshLevel('win');
 	}
 
 }

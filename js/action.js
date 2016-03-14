@@ -24,31 +24,23 @@ function poopyOrNo() {
 function stateCheck() {
 	// if winner
 	if (totMunchiesEaten == munchiesCreated) {
-		console.log('is winner')
-		// change face to winner
-	  chooseFace(false,4,4);
+		console.log('is winner');
+		isDead = true;
+		game.input.enabled = false;
+		if (winTime == 0) {
+			winTime = game.time.now + 10;
+			chooseFace(true,4,4);
+			console.log(winTime);
+		}
 	}
 	// if at maximum capacity (with a little lee-way)
 	else if (munchiesEaten > maxCapacity+1) {
 		console.log('is dead');
 		isDead = true;
+		game.input.enabled = false;
 		if (deathTime == 0) {
-			startDeathTimer();
+			deathTime = game.time.now + 10;
+			chooseFace(true,5,5);
 		}
 	}
-}
-
-function startDeathTimer() {
-	deathTime = game.time.now + 1000;
-	chooseFace(true,5,5);
-	refreshLevel("dead");
-}
-
-function startWinnerTimer() {
-	winTime = game.time.now + 1000;
-	chooseFace(true,4,4);
-	// show the winning overlay
-	showHide('win');
-	// refresh the level
-	refreshLevel('win');
 }

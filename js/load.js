@@ -71,7 +71,6 @@ var noOfMunchies = Math.round(window.innerWidth / 100);
 var winnerText;
 // var livesText;
 var deathText;
-var lives = Math.round(Math.random())+1;
 var level = 0;
 var toilet;
 var poo;
@@ -79,11 +78,10 @@ var needToPoop = false;
 var munchiesEaten = 0;
 var munchiesCreated = 0;
 var totMunchiesEaten = 0;
-var allowInput = true;
 var isDead = false;
 var deathTime = 0;
 var overlayTime = 0;
-var restartTime = 0;
+var winTime = 0;
 var introText;
 var dimension;
 var noOfPlatforms;
@@ -92,15 +90,26 @@ var randomY;
 var poops;
 
 function refreshLevel(status) {
+	// destroy all the things
 	console.log("refreshLevel" + status);
 	platforms.destroy();
 	munchies.destroy();
 	toilet.destroy();
 	player.destroy();
-	// poo.destroy();
+	// reset all the things
 	scoreText.text = "Score: " + 0;
+	needToPoop = false;
+	munchiesEaten = 0;
+	munchiesCreated = 0;
+	totMunchiesEaten = 0;
+	isDead = false;
+	deathTime = 0;
+	overlayTime = 0;
+	winTime = 0;
 	createSurfaces();
 	createWC();
 	createPlayer();
 	createMunchies();
+	game.paused = true;
+	game.input.enabled = true;
 }
