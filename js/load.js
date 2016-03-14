@@ -105,7 +105,6 @@ var munchyArray = [];
 var looPosX = 0;
 
 function refreshLevel(status) {
-	console.log(score);
 	// destroy all the things
 	platforms.destroy();
 	munchies.destroy();
@@ -124,7 +123,7 @@ function refreshLevel(status) {
 	overlayTime = 0;
 	winTime = 0;
 	looPosX = 0;
-	updateText();
+	updateText(status);
 	createSurfaces();
 	createWC();
 	createPlayer();
