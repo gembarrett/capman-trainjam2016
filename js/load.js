@@ -12,7 +12,6 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '
 // };
 
 function setUpClicks() {
-	console.log('setting up clicks');
 	var overlay = document.getElementById("intro");
 	overlay.style.display = "block";
 	overlay = document.getElementById("death");
@@ -21,7 +20,6 @@ function setUpClicks() {
 	overlay.style.display = "none";
 
 	var buttons = document.getElementsByTagName('button');
-	console.log(buttons[2]);
 	for (var i = 0; i < buttons.length; i++) {
 		if (buttons[i].id == "reload") {
 			buttons[i].addEventListener('click', function() {
@@ -29,9 +27,7 @@ function setUpClicks() {
 			});
 		} else {
 			buttons[i].addEventListener('click', function() {
-				console.log("button click to dismiss");
 				game.paused = false;
-				console.log(game.paused);
 				showHide(this.parentElement.parentElement.id);
 			});
 		}
@@ -39,14 +35,13 @@ function setUpClicks() {
 };
 
 function showHide(id) {
-	console.log(id)
 	var el = document.getElementById(id);
+	// console.log('win - grab the win overlay');
 	if (el.style.display == "block") {
 		document.getElementById(id).style.display = 'none';
-		console.log('was showing');
 	} else {
 		document.getElementById(id).style.display = 'block';
-		console.log('was hiding');
+		// console.log('win - show the win overlay');
 	}
 }
 
@@ -60,7 +55,7 @@ function preload() {
 	game.load.image('munchy2', 'assets/munchies/munchy2.png');
 	game.load.image('munchy3', 'assets/munchies/munchy3.png');
 	game.load.image('munchy4', 'assets/munchies/munchy4.png');
-	// game.load.image('munchy5', 'assets/munchies/munchy5.png');
+	game.load.image('munchy5', 'assets/munchies/munchy5.png');
 	game.load.image('toilet', 'assets/toilet.png');
 	game.load.image('poop', 'assets/poo.png');
 	game.load.spritesheet('face', 'assets/faces-sprites.png', 36, 46);
@@ -72,7 +67,7 @@ var platforms;
 var player;
 var score = 0;
 var scoreText;
-var noOfMunchies = Math.round(window.innerWidth / 100);
+var noOfMunchies = Math.round(window.innerWidth / 100)/2;
 var winnerText;
 // var livesText;
 var deathText;
@@ -93,15 +88,17 @@ var noOfPlatforms;
 var randomX;
 var randomY;
 var poops;
+var munchyTypes;
+var currentFace = 3;
 
 function refreshLevel(status) {
 	// destroy all the things
-	console.log("refreshLevel" + status);
 	platforms.destroy();
 	munchies.destroy();
 	toilet.destroy();
 	player.destroy();
 	// reset all the things
+	game.input.enabled = true;
 	scoreText.text = "Score: " + 0;
 	needToPoop = false;
 	munchiesEaten = 0;
@@ -116,5 +113,6 @@ function refreshLevel(status) {
 	createPlayer();
 	createMunchies();
 	game.paused = true;
-	game.input.enabled = true;
+	// game.input.enabled = true;
+	// console.log('win - destroy and start again');
 }

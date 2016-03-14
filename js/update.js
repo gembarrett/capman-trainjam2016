@@ -21,7 +21,7 @@ function update() {
 			player.body.velocity.x = 150;
 			player.animations.play('right');
 		} else {
-			poopyOrNo();
+			player.frame = currentFace;
 		}
 
 		// if the up key is pressed while the player is on the ground
@@ -42,8 +42,11 @@ function update() {
 
 	// if dead and time for face to change
 	if(isDead && ((game.time.now >= deathTime) && (game.time.now <= deathTime+100))){
-		console.log('deathTime');
-		chooseFace(true,6,6);
+		player.animations.stop();
+		currentFace = 6;
+		// console.log('dead and post-delay - dead face required');
+		chooseFace(true,6);
+		// console.log(currentFace);
 		// deathText.text = "Exceeded maximum capacity!";
 		// deathText.visible = true;
 		// game.paused = true;
@@ -51,11 +54,11 @@ function update() {
 		// if overlay delay time isn't set yet
 		if (overlayTime == 0) {
 			// set it
-			overlayTime = game.time.now + 10;
+			overlayTime = game.time.now + 10000;
 		}
 		// if time for death overlay to show
-		else if((game.time.now >= overlayTime && game.time.now <= overlayTime+100)){
-			console.log('overlayTime');
+		else {
+			// console.log('time to show overlay');
 			showHide("death");
 			refreshLevel('death');
 		}
@@ -64,10 +67,12 @@ function update() {
 		// deathText.text = "Exceeded maximum capacity!";
 		// deathText.visible = true;
 		// game.paused = true;
-	else if(isDead && (game.time.now >= winTime && game.time.now <= winTime+100)) {
-		console.log('winTime');
+	else if(isDead && ((game.time.now >= winTime) && (game.time.now <= winTime+100))) {
+		// console.log('win - delay is over');
 		// show the winning overlay
 		showHide('win');
+		level++;
+		// console.log('win - increase level');
 		// refresh the level
 		refreshLevel('win');
 	}

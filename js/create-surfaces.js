@@ -19,7 +19,7 @@ function createSurfaces() {
 
   getNumberOfPlatforms();
 
-  if (level == 0) {
+  // if (level == 0) {
     // x then y from bottom to top
     // createPlatforms(0, 450);
     for (var i=0; i<noOfPlatforms; i++) {
@@ -35,7 +35,7 @@ function createSurfaces() {
         }
         createPlatforms(randomX, randomY);
     }
-  }
+  // }
 }
 
 function getNumberOfPlatforms() {

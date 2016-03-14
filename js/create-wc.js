@@ -1,9 +1,9 @@
 function createWC() {
-  if (level == 0) {
+  // if (level == 0) {
     randomLooX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
 
     createToilet(randomLooX);
-  }
+  // }
 }
 
 function createToilet(posX) {

@@ -10,10 +10,12 @@ function createMunchies() {
   if (level == 0) {
     addMunchies('munchy');
     addMunchies('munchy2');
-    // addMunchies('munchy3');
-    // addMunchies('munchy4');
-    // addMunchies('munchy5');
-  // } else if (level == 1) {
+    munchyTypes = 2;
+  } else if (level == 1) {
+    addMunchies('munchy3');
+    addMunchies('munchy4');
+    addMunchies('munchy5');
+    munchyTypes = 3;
   }
 }
 

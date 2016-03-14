@@ -13,15 +13,15 @@ function createPlayer() {
   player.body.gravity.y = 100;
   // stop player from falling off the world
   player.body.collideWorldBounds = true;
-  chooseFace(false, 3, 2);
+  player.animations.stop();
+  currentFace = 3;
+  // console.log('creating player - default face required');
+  chooseFace(false,2);
 
 }
 
-function chooseFace(poopNeed, headOn, side) {
-  player.animations.stop();
+function chooseFace(poopNeed, side) {
   needToPoop = poopNeed;
-  player.frame = headOn;
-
   player.animations.add('left', [side], 10, true);
   player.animations.add('right', [side], 10, true);
 }

@@ -7,37 +7,61 @@ function eatMunchy(player, munchy) {
 	// update score
 	score += 10;
 	scoreText.text = 'Score: ' + score;
-	console.log("stateCheck because munchy eaten");
+	// console.log('ate a munchy, check the state');
 	stateCheck();
 }
 
 
 function poopyOrNo() {
 	if (munchiesEaten < maxCapacity+1) {
-	  chooseFace(false,3,2);
+		player.animations.stop();
+		currentFace = 3;
+		// console.log('not poopy - default face required');
+	  chooseFace(false,2);
 	// reached maximum capacity
-} else if (munchiesEaten >= maxCapacity+1) {
-		chooseFace(true,0,1);
+} else if (munchiesEaten == maxCapacity || munchiesEaten == maxCapacity+1) {
+		player.animations.stop();
+		currentFace = 0;
+		// console.log('too many munchies - shocked face required');
+		chooseFace(true,1);
+	} else {
+		// console.log("not poopy or default");
+		return false;
 	}
 }
 
 function stateCheck() {
-	// if winner
-	if (totMunchiesEaten == munchiesCreated) {
-		isDead = true;
-		game.input.enabled = false;
-		if (winTime == 0) {
-			winTime = game.time.now + 10;
-			chooseFace(true,4,4);
+	if (!(poopyOrNo())) {
+		// if winner
+		if (totMunchiesEaten == munchiesCreated) {
+			// console.log('win - eaten all munchies');
+			isDead = true;
+			// game.input.enabled = false;
+			if (winTime == 0) {
+				// console.log('win - delay being set');
+				winTime = game.time.now + 2500;
+				player.animations.stop();
+				currentFace = 4;
+				// console.log('win - cool face required');
+				chooseFace(true,4);
+				game.input.enabled = false;
+				player.body.velocity = 0;
+			}
 		}
-	}
-	// if at maximum capacity (with a little lee-way)
-	else if (munchiesEaten > maxCapacity+1) {
-		isDead = true;
-		game.input.enabled = false;
-		if (deathTime == 0) {
-			deathTime = game.time.now + 10;
-			chooseFace(true,5,5);
+		// if at maximum capacity (with a little lee-way)
+		else if (munchiesEaten > maxCapacity+1) {
+			isDead = true;
+			// game.input.enabled = false;
+			if (deathTime == 0) {
+				// console.log('death - death time being set');
+				deathTime = game.time.now + 3000;
+				player.animations.stop();
+				currentFace = 5;
+				// console.log('started death sequence - explosion icon required');
+				chooseFace(true,5);
+				game.input.enabled = false;
+				player.body.velocity = 0;
+			}
 		}
 	}
 }

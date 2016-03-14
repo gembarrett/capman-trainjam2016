@@ -8,7 +8,10 @@ function useToilet(toilet) {
 		// reset number of munchies eaten
 		munchiesEaten = 0;
 		// reset faceto default
-		chooseFace(false, 3,2);
+		player.animations.stop();
+		currentFace = 3;
+		// console.log('just pooped - default face required');
+		chooseFace(false,2);
 		// reloadLevel();
 	}
 }
