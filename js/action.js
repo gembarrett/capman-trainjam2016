@@ -24,18 +24,15 @@ function poopyOrNo() {
 function stateCheck() {
 	// if winner
 	if (totMunchiesEaten == munchiesCreated) {
-		console.log('is winner');
 		isDead = true;
 		game.input.enabled = false;
 		if (winTime == 0) {
 			winTime = game.time.now + 10;
 			chooseFace(true,4,4);
-			console.log(winTime);
 		}
 	}
 	// if at maximum capacity (with a little lee-way)
 	else if (munchiesEaten > maxCapacity+1) {
-		console.log('is dead');
 		isDead = true;
 		game.input.enabled = false;
 		if (deathTime == 0) {

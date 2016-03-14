@@ -21,7 +21,8 @@ function setUpClicks() {
 	overlay.style.display = "none";
 
 	var buttons = document.getElementsByTagName('button');
-	for (var i = 0; i < buttons.length-1; i++) {
+	console.log(buttons[2]);
+	for (var i = 0; i < buttons.length; i++) {
 		if (buttons[i].id == "reload") {
 			buttons[i].addEventListener('click', function() {
 				reloadLevel("reload");
@@ -30,6 +31,7 @@ function setUpClicks() {
 			buttons[i].addEventListener('click', function() {
 				console.log("button click to dismiss");
 				game.paused = false;
+				console.log(game.paused);
 				showHide(this.parentElement.parentElement.id);
 			});
 		}
@@ -37,11 +39,14 @@ function setUpClicks() {
 };
 
 function showHide(id) {
+	console.log(id)
 	var el = document.getElementById(id);
 	if (el.style.display == "block") {
 		document.getElementById(id).style.display = 'none';
+		console.log('was showing');
 	} else {
 		document.getElementById(id).style.display = 'block';
+		console.log('was hiding');
 	}
 }
 
