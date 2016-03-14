@@ -67,7 +67,10 @@ function preload() {
 	game.load.image('poop', 'assets/poo.png');
 	game.load.spritesheet('face', 'assets/faces-sprites.png', 36, 46);
 	setUpClicks();
-
+	winning = document.getElementById('win');
+	winning = winning.getElementsByTagName('h2');
+	losing = document.getElementById('death');
+	losing = document.getElementsByTagName('h3');
 }
 
 var platforms;
@@ -75,8 +78,10 @@ var player;
 var score = 0;
 var scoreText;
 var noOfMunchies = Math.round(window.innerWidth / 100)/2;
-var level = 5;
-var levelText
+var level = 0;
+var levelText;
+var winning;
+var losing;
 var toilet;
 var toilets;
 var poo;
@@ -97,8 +102,10 @@ var poops;
 var munchyTypes;
 var currentFace = 3;
 var munchyArray = [];
+var looPosX = 0;
 
 function refreshLevel(status) {
+	console.log(score);
 	// destroy all the things
 	platforms.destroy();
 	munchies.destroy();
@@ -106,8 +113,8 @@ function refreshLevel(status) {
 	player.destroy();
 	// reset all the things
 	game.input.enabled = true;
-	scoreText.text = "Score: " + 0;
-	levelText.text = "Level: " + level;
+	scoreText.text = "Score: " + score;
+	levelText.text = "Level: " + (level+1);
 	needToPoop = false;
 	munchiesEaten = 0;
 	munchiesCreated = 0;
@@ -116,11 +123,20 @@ function refreshLevel(status) {
 	deathTime = 0;
 	overlayTime = 0;
 	winTime = 0;
+	looPosX = 0;
+	updateText();
 	createSurfaces();
 	createWC();
 	createPlayer();
 	createMunchies();
 	game.paused = true;
-	// game.input.enabled = true;
-	// console.log('win - destroy and start again');
 }
+
+function updateText(status) {
+	if (status == 'win') {
+		winning[0].textContent = "Level " + (level+1);
+	} else {
+		losing[0].textContent = "You reached level " + (level+1) + " and scored a total of " + score + " points";
+	}
+}
+

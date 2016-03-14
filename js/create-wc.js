@@ -49,9 +49,13 @@ function randomiseLoos() {
 }
 
 function createToilet() {
-  posX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
+  if (looPosX != 0) {
+    looPosX = looPosX + Math.round((Math.random(0, (game.world.width-100)/1000))*500);
+  } else {
+    looPosX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
+  }
 	// toilet = game.add.sprite(posX,0,'toilet');
-  toilet = toilets.create(posX, 0, 'toilet');
+  toilet = toilets.create(looPosX, 0, 'toilet');
   toilet.body.bounce.y = 0.2;
   toilet.body.gravity.y = 300;
   toilet.body.collideWorldBounds = true;

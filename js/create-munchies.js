@@ -84,7 +84,8 @@ function randomiseMunchies(typesNeeded) {
   }
   // console.log(munchyArray);
   for (var j=0; j<=typesNeeded;j++) {
-    var thisMunchy = munchyArray[Math.floor(Math.random() * (11 - 0 + 1)) + 0]
+    var thisMunchy = munchyArray[Math.floor(Math.random() * (11 - -1 + 1)) + -1];
+    console.log(thisMunchy);
     if (thisMunchy != undefined) {
       addMunchies(thisMunchy);
     }

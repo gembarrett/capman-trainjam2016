@@ -23,7 +23,7 @@ function create() {
 		fontSize:'20px', fill: '#000'
 	});
 
-	levelText = game.add.text(game.world.centerX,16, 'Level: '+level, {
+	levelText = game.add.text(game.world.centerX,16, 'Level: '+ (level+1), {
 		fontSize:'20px', fill: '#000'
 	});
 

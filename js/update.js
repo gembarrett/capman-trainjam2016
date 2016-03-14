@@ -71,7 +71,9 @@ function update() {
 		// console.log('win - delay is over');
 		// show the winning overlay
 		showHide('win');
-		level++;
+		if (level <15) {
+			level++;
+		}
 		// console.log('win - increase level');
 		// refresh the level
 		refreshLevel('win');
