@@ -37,8 +37,8 @@ function update() {
 	// check for overlap between fishie and player
 	game.physics.arcade.overlap(player, munchies, eatMunchy, null, this);
 
-	game.physics.arcade.collide(toilet, platforms);
-	game.physics.arcade.overlap(player, toilet, useToilet, null, this);
+	game.physics.arcade.collide(toilets, platforms);
+	game.physics.arcade.overlap(player, toilets, useToilet, null, this);
 
 	// if dead and time for face to change
 	if(isDead && ((game.time.now >= deathTime) && (game.time.now <= deathTime+100))){

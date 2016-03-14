@@ -23,23 +23,28 @@ function create() {
 		fontSize:'20px', fill: '#000'
 	});
 
-	winnerText = game.add.text(game.world.centerX, game.world.centerY, '', {
-		fontSize:'30px', fill: '#000'
+	levelText = game.add.text(game.world.centerX,0, 'Level: 1', {
+		fontSize:'20px', fill: '#000'
 	});
+
+	// winnerText = game.add.text(game.world.centerX, game.world.centerY, '', {
+	// 	fontSize:'30px', fill: '#000'
+	// });
 
 	// livesText = game.add.text(game.world.width/2,16, 'Lives: '+lives, {
 	// 	fontSize:'32px', fill: '#000'
 	// });
 	//
-	deathText = game.add.text(game.world.centerX, game.world.centerY, '', {
-		fontSize: '30px', fill: '#000'
-	});
+	// deathText = game.add.text(game.world.centerX, game.world.centerY, '', {
+	// 	fontSize: '30px', fill: '#000'
+	// });
 
 
 	// introText = game.add.text(game.world.centerX, game.world.centerY, '- click to start -', { font: "40px Helvetica", fill: "#ffffff", align: "center" });
 	// introText.anchor.setTo(0.5, 0.5);
-	deathText.anchor.setTo(0.5, 0.5);
-	winnerText.anchor.setTo(0.5, 0.5);
+	// deathText.anchor.setTo(0.5, 0.5);
+	// winnerText.anchor.setTo(0.5, 0.5);
+	levelText.anchor.setTo(1, 0.5);
 
 
 }

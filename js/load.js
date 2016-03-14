@@ -51,11 +51,18 @@ function preload() {
 
 	game.load.image('sky', 'assets/sky.png');
 	game.load.image('ground', 'assets/platform.png');
+	// TODO: turn these into a spritesheet
 	game.load.image('munchy', 'assets/munchies/munchy.png');
 	game.load.image('munchy2', 'assets/munchies/munchy2.png');
 	game.load.image('munchy3', 'assets/munchies/munchy3.png');
 	game.load.image('munchy4', 'assets/munchies/munchy4.png');
 	game.load.image('munchy5', 'assets/munchies/munchy5.png');
+	game.load.image('munchy6', 'assets/munchies/munchy6.png');
+	game.load.image('munchy7', 'assets/munchies/munchy7.png');
+	game.load.image('munchy8', 'assets/munchies/munchy8.png');
+	game.load.image('munchy9', 'assets/munchies/munchy9.png');
+	game.load.image('munchy10', 'assets/munchies/munchy10.png');
+	game.load.image('munchy11', 'assets/munchies/munchy11.png');
 	game.load.image('toilet', 'assets/toilet.png');
 	game.load.image('poop', 'assets/poo.png');
 	game.load.spritesheet('face', 'assets/faces-sprites.png', 36, 46);
@@ -68,11 +75,10 @@ var player;
 var score = 0;
 var scoreText;
 var noOfMunchies = Math.round(window.innerWidth / 100)/2;
-var winnerText;
-// var livesText;
-var deathText;
-var level = 0;
+var level = 5;
+var levelText
 var toilet;
+var toilets;
 var poo;
 var needToPoop = false;
 var munchiesEaten = 0;
@@ -90,12 +96,13 @@ var randomY;
 var poops;
 var munchyTypes;
 var currentFace = 3;
+var munchyArray = [];
 
 function refreshLevel(status) {
 	// destroy all the things
 	platforms.destroy();
 	munchies.destroy();
-	toilet.destroy();
+	toilets.destroy();
 	player.destroy();
 	// reset all the things
 	game.input.enabled = true;

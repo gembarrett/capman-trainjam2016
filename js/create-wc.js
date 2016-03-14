@@ -1,14 +1,57 @@
 function createWC() {
-  // if (level == 0) {
-    randomLooX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
+  toilets = game.add.group();
 
-    createToilet(randomLooX);
-  // }
+  // add physics to the munchies as well
+  toilets.enableBody = true;
+
+  if (level == 0) {
+    createToilet();
+  } else if (level == 1) {
+    createToilet();
+    createToilet();
+  } else if (level == 2) {
+    createToilet();
+    createToilet();
+  } else if (level == 3) {
+    createToilet();
+    createToilet();
+  } else if (level == 4) {
+    createToilet();
+    createToilet();
+  } else if (level == 5) {
+    randomiseLoos();
+  } else if (level == 6) {
+    randomiseLoos();
+  } else if (level == 7) {
+    randomiseLoos();
+  } else if (level == 8) {
+    randomiseLoos();
+  } else if (level == 9) {
+    randomiseLoos();
+  } else if (level == 10) {
+    randomiseLoos();
+  } else if (level == 11) {
+    randomiseLoos();
+  } else if (level == 12) {
+    randomiseLoos();
+  } else if (level == 13) {
+    randomiseLoos();
+  } else if (level == 14) {
+    randomiseLoos();
+  }
 }
 
-function createToilet(posX) {
-	toilet = game.add.sprite(posX,0,'toilet');
-  game.physics.arcade.enable(toilet);
+function randomiseLoos() {
+  var randomNo = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+  for (var i=0; i<randomNo; i++) {
+    createToilet();
+  }
+}
+
+function createToilet() {
+  posX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
+	// toilet = game.add.sprite(posX,0,'toilet');
+  toilet = toilets.create(posX, 0, 'toilet');
   toilet.body.bounce.y = 0.2;
   toilet.body.gravity.y = 300;
   toilet.body.collideWorldBounds = true;
