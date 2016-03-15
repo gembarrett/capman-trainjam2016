@@ -112,8 +112,6 @@ function refreshLevel(status) {
 	player.destroy();
 	// reset all the things
 	game.input.enabled = true;
-	scoreText.text = "Score: " + score;
-	levelText.text = "Level: " + (level+1);
 	needToPoop = false;
 	munchiesEaten = 0;
 	munchiesCreated = 0;
@@ -134,8 +132,15 @@ function refreshLevel(status) {
 function updateText(status) {
 	if (status == 'win') {
 		winning[0].textContent = "Level " + (level+1);
+		levelText.text = "Level: " + (level+1);
+		console.log('winning', level);
 	} else {
 		losing[0].textContent = "You reached level " + (level+1) + " and scored a total of " + score + " points";
+		level = 0;
+		score = 0;
+		scoreText.text = "Score: " + score;
+		levelText.text = "Level: " + (level+1);
+		console.log('losing', level);
 	}
 }
 
