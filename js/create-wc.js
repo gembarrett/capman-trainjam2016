@@ -42,8 +42,8 @@ function createWC() {
 }
 
 function randomiseLoos() {
-  var randomNo = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-  for (var i=0; i<randomNo; i++) {
+  var noOfLoos = noOfMunchies/(Math.floor(Math.random() * (3 - 1 + 1)) + 1);
+  for (var i=0; i<noOfLoos; i++) {
     createToilet();
   }
 }

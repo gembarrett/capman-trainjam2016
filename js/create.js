@@ -12,11 +12,12 @@ function create() {
 
 	createSurfaces();
 
-	createWC();
-
 	createPlayer();
 
 	createMunchies();
+
+	createWC();
+
 
 	// show scoree with specific positioning and style
 	scoreText = game.add.text(16,16, 'Score: 0', {

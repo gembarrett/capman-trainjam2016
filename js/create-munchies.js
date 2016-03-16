@@ -9,12 +9,12 @@ function createMunchies() {
 
   // create munchies
   if (level == 0) {
+    noOfMunchies = Math.round(window.innerWidth / 100)/2;
     addMunchies('munchy');
     addMunchies('munchy2');
-    munchyTypes = 2;
   } else if (level == 1) {
     munchyTypes = 3;
-    noOfMunchies = Math.round(window.innerWidth / 100)/munchyTypes;
+    noOfMunchies = Math.round(window.innerWidth / 100)/2;
     addMunchies('munchy3');
     addMunchies('munchy4');
     addMunchies('munchy5');
@@ -77,6 +77,7 @@ function addMunchies(munchyName) {
 }
 
 function randomiseMunchies(typesNeeded) {
+  noOfMunchies = Math.round(window.innerWidth / 100)/(munchyTypes*2);
   munchyArray[0] = 'munchy';
   for (var i=2; i<12; i++) {
     munchyArray[i] = 'munchy'+i;
