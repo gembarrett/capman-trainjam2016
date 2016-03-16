@@ -42,19 +42,24 @@ function createWC() {
 }
 
 function randomiseLoos() {
-  var noOfLoos = noOfMunchies/(Math.floor(Math.random() * (3 - 1 + 1)) + 1);
+  // var noOfLoos = noOfMunchies/(Math.floor(Math.random() * (3 - 1 + 1)) + 1);
+  var noOfLoos = munchiesCreated/level;
+  if (noOfLoos < 2) {
+    noOfLoos = 1;
+  }
   for (var i=0; i<noOfLoos; i++) {
     createToilet();
   }
 }
 
 function createToilet() {
-  if (looPosX != 0) {
-    looPosX = looPosX + Math.round((Math.random(0, (game.world.width-100)/1000))*500);
-  } else {
-    looPosX = Math.round((Math.random(0, (game.world.width-100)/1000))*500);
+
+  looPosX = Math.random()*5000;
+
+  while (looPosX > game.world.width) {
+    looPosX = Math.random()*5000;
   }
-	// toilet = game.add.sprite(posX,0,'toilet');
+
   toilet = toilets.create(looPosX, 0, 'toilet');
   toilet.body.bounce.y = 0.2;
   toilet.body.gravity.y = 300;

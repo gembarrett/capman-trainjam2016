@@ -53,12 +53,15 @@ function createMunchies() {
   }
 }
 
+var munchyDistance;
+
 function addMunchies(munchyName) {
+  munchyDistance = Math.random()*100;
 	for (var i = 0; i < noOfMunchies; i++) {
-		var munchyDistance = game.world.width+1;
+		munchyDistance = munchyDistance+munchyDistance;
 
 		while (munchyDistance > game.world.width) {
-			var munchyDistance = (game.world.height/noOfMunchies)*Math.random()*10;
+			munchyDistance = Math.random()*100;
 		}
 
 		// munchy in each group a random distance apart from each other
@@ -77,7 +80,7 @@ function addMunchies(munchyName) {
 }
 
 function randomiseMunchies(typesNeeded) {
-  noOfMunchies = Math.round(window.innerWidth / 100)/(munchyTypes*2);
+  noOfMunchies = Math.round(window.innerWidth / 100)-typesNeeded;
   munchyArray[0] = 'munchy';
   for (var i=2; i<12; i++) {
     munchyArray[i] = 'munchy'+i;
@@ -86,7 +89,6 @@ function randomiseMunchies(typesNeeded) {
   // console.log(munchyArray);
   for (var j=0; j<=typesNeeded;j++) {
     var thisMunchy = munchyArray[Math.floor(Math.random() * (11 - -1 + 1)) + -1];
-    console.log(thisMunchy);
     if (thisMunchy != undefined) {
       addMunchies(thisMunchy);
     }

@@ -47,7 +47,10 @@ function getNumberOfPlatforms() {
   } else {
     dimension = game.world.height;
   }
-  noOfPlatforms = dimension/100;
+  noOfPlatforms = (Math.round(dimension/100)*level);
+  while (noOfPlatforms < 5 || noOfPlatforms > 15) {
+    noOfPlatforms = (Math.random()*100);
+  }
 
 }
 
